@@ -1,0 +1,34 @@
+<div class="panel panel-default" ng-controller="StaticCtrl">
+    <div class="panel-heading">
+      Static Table
+    </div>
+    <div class="panel-body">
+	    <div class="table-responsive">
+	      	<table class="table table-striped text-center">
+	        	<thead>
+	          		<th class="text-center">
+	          			<input type="checkbox" ng-model="status"/>
+	          		</th>
+	          		<th class="text-center">Name</th>
+	          		<th class="text-center">Age</th>
+	          		<th class="text-center">Sex</th>
+	          		<th class="text-center">Opreate</th>
+	        	</thead>
+	        	<tbody>
+	          		<tr ng-repeat="person in persons">
+	          			<td><input type="checkbox" ng-checked="status"/></td>
+	          			<td>{{person.name}}</td>
+	          			<td>{{person.age}}</td>
+	          			<td>{{person.sex}}</td>
+	          			<td>
+	          				<button class="btn btn-success" ng-click="del(person, $index)">delete</button>
+	          			</td>
+	          		</tr>
+	        	</tbody>
+	      	</table>
+	    </div>
+	</div>
+    <!--<footer class="panel-footer">
+      
+    </footer>-->
+</div>
