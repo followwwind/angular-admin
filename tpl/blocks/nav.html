@@ -1,206 +1,13 @@
 <!-- list -->
 <ul class="nav">
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-    <span>Navigation</span>
-  </li>
-  <li>
-    <a href class="auto">      
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-      <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-      <span class="font-bold">Dashboard</span>
-    </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard-v1">
-          <span>Dashboard v1</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.dashboard-v2">
-          <b class="label bg-info pull-right">N</b>
-          <span>Dashboard v2</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.calendar">
-      <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
-      <span class="font-bold">Calendar</span>
-    </a>
-  </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.mail.list">
-      <b class="badge bg-info pull-right">9</b>
-      <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
-      <span class="font-bold">Email</span>
-    </a>
-  </li>
-  <li>
-    <a href class="auto">
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-      <i class="glyphicon glyphicon-th-large icon text-success"></i>
-      <span class="font-bold">Apps</span>
-    </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span>Apps</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.todo">
-          <span>Todo</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="apps.note">
-          <span>Note</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="apps.contact">
-          <span>Contacts</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.weather">
-          <span>Weather</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="line dk"></li>
-
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
     <span>Components</span>
   </li>
-  <li ng-class="{active:$state.includes('app.table')}">
-    <a href class="auto">
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-      <b class="label bg-primary pull-right">2</b>
-      <i class="glyphicon glyphicon-list"></i>
-      <span translate="aside.nav.components.table.TABLE">Table</span>
+  <li ui-sref-active="active">
+    <a ui-sref="app.blank">
+      <i class="glyphicon glyphicon-th-large icon text-info-lter"></i>
+      <span class="font-bold">blank</span>
     </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span translate="aside.nav.components.table.TABLE">Table</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.static">
-          <span translate="aside.nav.components.table.TABLE_STATIC">Table static</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.datatable">
-          <span translate="aside.nav.components.table.DATATABLE">Datatable</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.footable">
-          <span translate="aside.nav.components.table.FOOTABLE">Footable</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.grid">
-          <span>ngGrid</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.uigrid">
-          <span>uiGrid</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.smart">
-          <span>Smart table</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.table.editable">
-          <span>Editable</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li ng-class="{active:$state.includes('app.form')}">
-    <a href class="auto">
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-      <i class="glyphicon glyphicon-edit"></i>
-      <span>Form</span>
-    </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span>Form</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.elements">
-          <span>Form elements</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.validation">
-          <span>Form validation</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.wizard">
-          <span>Form wizard</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.fileupload">
-          <span>File upload</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.imagecrop">
-          <span>Image crop</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.select">
-          <span>Select</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.slider">
-          <span>Slider</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.editor">
-          <span>Editor</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.form.xeditable">
-          <span>Xeditable</span>
-        </a>
-      </li>
-    </ul>
   </li>
   <li ng-class="{active:$state.includes('app.page')}">
     <a href class="auto">
@@ -248,12 +55,12 @@
         </a>
       </li>
       <li>
-        <a ui-sref="access.signin">
+        <a ui-sref="admin.signin">
           <span>Signin</span>
         </a>
       </li>
       <li>
-        <a ui-sref="access.signup">
+        <a ui-sref="admin.signup">
           <span>Signup</span>
         </a>
       </li>

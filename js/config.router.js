@@ -86,6 +86,10 @@ angular.module('app')
                   url: '/404',
                   templateUrl: 'tpl/page_404.html'
               })
+              .state('app.blank', {
+                url: '/blank',
+                templateUrl: 'tpl/blank.html'
+              })
       }
     ]
   );
