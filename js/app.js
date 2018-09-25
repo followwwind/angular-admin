@@ -13,6 +13,5 @@ angular.module('app', [
     'ui.utils',
     'ui.load',
     'ui.jq',
-    'oc.lazyLoad',
-    'pascalprecht.translate'
+    'oc.lazyLoad'
 ]);

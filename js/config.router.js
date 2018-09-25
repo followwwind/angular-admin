@@ -44,118 +44,6 @@ angular.module('app')
                     }]
                   }
               })
-              .state('app.ui', {
-                  url: '/ui',
-                  template: '<div ui-view class="fade-in-up"></div>'
-              })
-              .state('app.ui.buttons', {
-                  url: '/buttons',
-                  templateUrl: 'tpl/ui_buttons.html'
-              })
-              .state('app.ui.icons', {
-                  url: '/icons',
-                  templateUrl: 'tpl/ui_icons.html'
-              })
-              .state('app.ui.grid', {
-                  url: '/grid',
-                  templateUrl: 'tpl/ui_grid.html'
-              })
-              .state('app.ui.widgets', {
-                  url: '/widgets',
-                  templateUrl: 'tpl/ui_widgets.html'
-              })          
-              .state('app.ui.bootstrap', {
-                  url: '/bootstrap',
-                  templateUrl: 'tpl/ui_bootstrap.html'
-              })
-              .state('app.ui.sortable', {
-                  url: '/sortable',
-                  templateUrl: 'tpl/ui_sortable.html'
-              })
-              .state('app.ui.scroll', {
-                  url: '/scroll',
-                  templateUrl: 'tpl/ui_scroll.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad){
-                          return uiLoad.load('js/controllers/scroll.js');
-                      }]
-                  }
-              })
-              .state('app.ui.portlet', {
-                  url: '/portlet',
-                  templateUrl: 'tpl/ui_portlet.html'
-              })
-              .state('app.ui.timeline', {
-                  url: '/timeline',
-                  templateUrl: 'tpl/ui_timeline.html'
-              })
-              .state('app.ui.tree', {
-                  url: '/tree',
-                  templateUrl: 'tpl/ui_tree.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/tree.js');
-                              }
-                          );
-                        }
-                      ]
-                  }
-              })
-              .state('app.ui.toaster', {
-                  url: '/toaster',
-                  templateUrl: 'tpl/ui_toaster.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('toaster').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/toaster.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.ui.jvectormap', {
-                  url: '/jvectormap',
-                  templateUrl: 'tpl/ui_jvectormap.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('js/controllers/vectormap.js');
-                      }]
-                  }
-              })
-              .state('app.ui.googlemap', {
-                  url: '/googlemap',
-                  templateUrl: 'tpl/ui_googlemap.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( [
-                            'js/app/map/load-google-maps.js',
-                            'js/app/map/ui-map.js',
-                            'js/app/map/map.js'] ).then(
-                              function(){
-                                return loadGoogleMaps(); 
-                              }
-                            );
-                      }]
-                  }
-              })
-              .state('app.chart', {
-                  url: '/chart',
-                  templateUrl: 'tpl/ui_chart.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad){
-                          return uiLoad.load('js/controllers/chart.js');
-                      }]
-                  }
-              })
               // table
               .state('app.table', {
                   url: '/table',
@@ -386,10 +274,6 @@ angular.module('app')
                   url: '/price',
                   templateUrl: 'tpl/page_price.html'
               })
-              .state('app.docs', {
-                  url: '/docs',
-                  templateUrl: 'tpl/docs.html'
-              })
               // others
               .state('lockme', {
                   url: '/lockme',
@@ -583,49 +467,6 @@ angular.module('app')
               .state('app.todo.list', {
                   url: '/{fold}'
               })
-              .state('music', {
-                  url: '/music',
-                  templateUrl: 'tpl/music.html',
-                  controller: 'MusicCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load([
-                            'com.2fdevs.videogular', 
-                            'com.2fdevs.videogular.plugins.controls', 
-                            'com.2fdevs.videogular.plugins.overlayplay',
-                            'com.2fdevs.videogular.plugins.poster',
-                            'com.2fdevs.videogular.plugins.buffering',
-                            'js/app/music/ctrl.js', 
-                            'js/app/music/theme.css'
-                          ]);
-                      }]
-                  }
-              })
-                .state('music.home', {
-                    url: '/home',
-                    templateUrl: 'tpl/music.home.html'
-                })
-                .state('music.genres', {
-                    url: '/genres',
-                    templateUrl: 'tpl/music.genres.html'
-                })
-                .state('music.detail', {
-                    url: '/detail',
-                    templateUrl: 'tpl/music.detail.html'
-                })
-                .state('music.mtv', {
-                    url: '/mtv',
-                    templateUrl: 'tpl/music.mtv.html'
-                })
-                .state('music.mtvdetail', {
-                    url: '/mtvdetail',
-                    templateUrl: 'tpl/music.mtv.detail.html'
-                })
-                .state('music.playlist', {
-                    url: '/playlist/{fold}',
-                    templateUrl: 'tpl/music.playlist.html'
-                })
       }
     ]
   );
