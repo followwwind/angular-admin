@@ -17,12 +17,13 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider, JQ_CONFIG) {
           
           $urlRouterProvider
-              .otherwise('/admin/signin');
+              .otherwise('/front/index');
           $stateProvider
+              //admin
               .state('app', {
                   abstract: true,
                   url: '/app',
-                  templateUrl: 'tpl/app.html'
+                  templateUrl: 'tpl/admin/app.html'
               })
               // pages
               .state('app.page', {
@@ -31,28 +32,28 @@ angular.module('app')
               })
               .state('app.page.profile', {
                   url: '/profile',
-                  templateUrl: 'tpl/page_profile.html'
+                  templateUrl: 'tpl/admin/page_profile.html'
               })
               .state('app.page.post', {
                   url: '/post',
-                  templateUrl: 'tpl/page_post.html'
+                  templateUrl: 'tpl/admin/page_post.html'
               })
               .state('app.page.search', {
                   url: '/search',
-                  templateUrl: 'tpl/page_search.html'
+                  templateUrl: 'tpl/admin/page_search.html'
               })
               .state('app.page.invoice', {
                   url: '/invoice',
-                  templateUrl: 'tpl/page_invoice.html'
+                  templateUrl: 'tpl/admin/page_invoice.html'
               })
               .state('app.page.price', {
                   url: '/price',
-                  templateUrl: 'tpl/page_price.html'
+                  templateUrl: 'tpl/admin/page_price.html'
               })
               // others
               .state('lockme', {
                   url: '/lockme',
-                  templateUrl: 'tpl/page_lockme.html'
+                  templateUrl: 'tpl/admin/page_lockme.html'
               })
               .state('admin', {
                   url: '/admin',
@@ -60,7 +61,7 @@ angular.module('app')
               })
               .state('admin.signin', {
                   url: '/signin',
-                  templateUrl: 'tpl/page_signin.html',
+                  templateUrl: 'tpl/admin/page_signin.html',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
@@ -70,7 +71,7 @@ angular.module('app')
               })
               .state('admin.signup', {
                   url: '/signup',
-                  templateUrl: 'tpl/page_signup.html',
+                  templateUrl: 'tpl/admin/page_signup.html',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
@@ -80,16 +81,27 @@ angular.module('app')
               })
               .state('access.forgotpwd', {
                   url: '/forgotpwd',
-                  templateUrl: 'tpl/page_forgotpwd.html'
+                  templateUrl: 'tpl/admin/page_forgotpwd.html'
               })
               .state('access.404', {
                   url: '/404',
-                  templateUrl: 'tpl/page_404.html'
+                  templateUrl: 'tpl/admin/page_404.html'
               })
               .state('app.blank', {
                 url: '/blank',
                 templateUrl: 'tpl/blank.html'
               })
+              //front
+              .state('front', {
+                abstract: true,
+                url: '/front',
+                templateUrl: 'tpl/front/app.html'
+              })
+              .state('front.index', {
+                url: '/index',
+                templateUrl: 'tpl/front/index.html'
+              })
+
       }
     ]
   );
