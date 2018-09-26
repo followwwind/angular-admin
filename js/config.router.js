@@ -91,17 +91,10 @@ angular.module('app')
                 url: '/blank',
                 templateUrl: 'tpl/blank.html'
               })
-              //front
-              .state('front', {
-                abstract: true,
-                url: '/front',
-                templateUrl: 'tpl/front/app.html'
+              .state('app.table', {
+                url: '/table',
+                templateUrl: 'tpl/table.html'
               })
-              .state('front.index', {
-                url: '/index',
-                templateUrl: 'tpl/front/index.html'
-              })
-
       }
     ]
   );
