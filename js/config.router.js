@@ -17,13 +17,13 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider, JQ_CONFIG) {
           
           $urlRouterProvider
-              .otherwise('/front/index');
+              .otherwise('/admin/signin');
           $stateProvider
               //admin
               .state('app', {
                   abstract: true,
                   url: '/app',
-                  templateUrl: 'tpl/admin/app.html'
+                  templateUrl: 'tpl/app.html'
               })
               // pages
               .state('app.page', {
@@ -32,28 +32,28 @@ angular.module('app')
               })
               .state('app.page.profile', {
                   url: '/profile',
-                  templateUrl: 'tpl/admin/page_profile.html'
+                  templateUrl: 'tpl/page_profile.html'
               })
               .state('app.page.post', {
                   url: '/post',
-                  templateUrl: 'tpl/admin/page_post.html'
+                  templateUrl: 'tpl/page_post.html'
               })
               .state('app.page.search', {
                   url: '/search',
-                  templateUrl: 'tpl/admin/page_search.html'
+                  templateUrl: 'tpl/page_search.html'
               })
               .state('app.page.invoice', {
                   url: '/invoice',
-                  templateUrl: 'tpl/admin/page_invoice.html'
+                  templateUrl: 'tpl/page_invoice.html'
               })
               .state('app.page.price', {
                   url: '/price',
-                  templateUrl: 'tpl/admin/page_price.html'
+                  templateUrl: 'tpl/page_price.html'
               })
               // others
               .state('lockme', {
                   url: '/lockme',
-                  templateUrl: 'tpl/admin/page_lockme.html'
+                  templateUrl: 'tpl/page_lockme.html'
               })
               .state('admin', {
                   url: '/admin',
@@ -61,31 +61,31 @@ angular.module('app')
               })
               .state('admin.signin', {
                   url: '/signin',
-                  templateUrl: 'tpl/admin/page_signin.html',
+                  templateUrl: 'tpl/page_signin.html',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/controller/signin.js'] );
+                          return uiLoad.load( ['js/app/controller/signIn.js'] );
                       }]
                   }
               })
               .state('admin.signup', {
                   url: '/signup',
-                  templateUrl: 'tpl/admin/page_signup.html',
+                  templateUrl: 'tpl/page_signup.html',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/controller/signup.js'] );
+                          return uiLoad.load( ['js/app/controller/signUp.js'] );
                       }]
                   }
               })
               .state('access.forgotpwd', {
                   url: '/forgotpwd',
-                  templateUrl: 'tpl/admin/page_forgotpwd.html'
+                  templateUrl: 'tpl/page_forgotpwd.html'
               })
               .state('access.404', {
                   url: '/404',
-                  templateUrl: 'tpl/admin/page_404.html'
+                  templateUrl: 'tpl/page_404.html'
               })
               .state('app.blank', {
                 url: '/blank',
@@ -93,7 +93,18 @@ angular.module('app')
               })
               .state('app.table', {
                 url: '/table',
-                templateUrl: 'tpl/table.html'
+                templateUrl: 'tpl/datatable.html',
+                resolve: {
+                    deps: ['uiLoad',
+                      function( uiLoad ){
+                        return uiLoad.load( [
+                            'js/jquery/datatables/js/jquery.dataTables.min.js',
+                            'js/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+                            'js/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                            'js/app/controller/datatable.js'
+                        ] );
+                    }]
+                }
               })
       }
     ]

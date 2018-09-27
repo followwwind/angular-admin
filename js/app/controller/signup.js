@@ -1,5 +1,4 @@
-app.controller('SignupFormController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
-	
-  
+'use strict'
+app.controller('SignUpFormController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
 
 }]);
