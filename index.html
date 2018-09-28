@@ -1,68 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="app">
-<head>
-  <meta charset="utf-8" />
-  <title>Angular</title>
-  <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
-  <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="js/jquery/bootstrap/css/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="css/animate.css" type="text/css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
-  <link rel="stylesheet" href="css/font.css" type="text/css" />
-  <link rel="stylesheet" href="css/app.css" type="text/css" />
-  <link rel="stylesheet" href="js/other/layui/css/layui.css" type="text/css" />
-  <link rel='icon'  href='img/favicon.ico'  type='image/x-ico'/>
-</head>
-<body ng-controller="AppCtrl">
-  <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
-  </div>
+<html data-ng-app="myapp">
+	<head>
+		<meta charset="UTF-8">
+		<title>MyAngular</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<link rel="stylesheet" href="css/font-awesome.css" />
+		<!-- Theme style -->
+		<link rel="stylesheet" href="css/AdminLTE.min.css">
+		<link rel="stylesheet" href="css/skins/all-skins.min.css">
+		<!-- iCheck -->
+  		<link rel="stylesheet" href="js/jquery/iCheck/flat/blue.css">
+		<!--<link rel="stylesheet" href="js/jquery/fullcalendar/fullcalendar.min.css" />-->
+ 		<link rel="stylesheet" href="js/jquery/fullcalendar/fullcalendar.print.css" media="print"/>	
+ 		<link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.min.css"/>
+	</head>
+	<body ng-controller="AppCtrl" class="hold-transition skin-blue sidebar-mini">
+		<div data-ui-view class="wrapper"></div>
+		<script type="text/javascript" src="js/jquery/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/jquery/jquery-ui.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/AdminLTE.js" ></script>
+		<script src="js/moment/moment-2.11.2.min.js"></script>
+
+		<!-- datatables -->
+		<script src="js/datatables/jquery.dataTables.min.js"></script>
+		<script src="js/datatables/dataTables.bootstrap.js"></script>
+		
+		<!-- angular -->
+		<script type="text/javascript" src="js/angular/angular.min.js" ></script>
+		<script type="text/javascript" src="js/angular/angular-cookies.min.js" ></script>
+		<script type="text/javascript" src="js/angular/angular-ui-router.min.js" ></script>
+		<script type="text/javascript" src="js/angular/angular-animate.min.js" ></script>
+		<script type="text/javascript" src="js/angular/angular-ui-load.js" ></script>
+		<script type="text/javascript" src="js/angular/angular-ui-jq.js" ></script>
+		<!--<script type="text/javascript" src="js/angular/ocLazyLoad.js" ></script>-->
+		<script type="text/javascript" src="js/angular/ui-bootstrap-tpls.js" ></script>
+		<script type="text/javascript" src="js/angular/ngStorage.js" ></script>
+		<script type="text/javascript" src="js/app/filters/filters.js" ></script>
+		<script type="text/javascript" src="js/app/services/services.js" ></script>
+		<script type="text/javascript" src="js/app/directives/directive.js" ></script>
+		<script type="text/javascript" src="js/angular/meta.umeditor.js"></script>
 
 
-  <!-- jQuery -->
-  <script src="js/jquery/jquery.min.js"></script>
 
-  <!-- Angular -->
-  <script src="js/angular/angular.min.js"></script>
-
-  <script src="js/other/moment/moment.js"></script>
-  <script src="js/jquery/bootstrap/js/bootstrap.min.js"></script>
-  <script src="js/other/layui/layui.all.js"></script>
-  
-  <script src="js/angular/angular-animate.min.js"></script>
-  <script src="js/angular/angular-cookies.min.js"></script>
-  <script src="js/angular/angular-resource.min.js"></script>
-  <script src="js/angular/angular-sanitize.min.js"></script>
-  <script src="js/angular/angular-touch.min.js"></script>
-
-  <script src="js/angular/angular-ui-router.min.js"></script> 
-  <script src="js/angular/other/ngStorage.min.js"></script>
-
-  <!-- bootstrap -->
-  <script src="js/angular/other/bootstrap/ui-bootstrap-tpls.min.js"></script>
-  <!-- lazyload -->
-  <script src="js/angular/ocLazyLoad.js"></script>
-
-  <!-- App -->
-  <script src="js/app.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/config.lazyload.js"></script>
-  <script src="js/config.router.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/app/services/ui-load.js"></script>
-  <script src="js/app/services/self-service.js"></script>
-  <script src="js/app/filters/fromNow.js"></script>
-  <script src="js/app/directives/setnganimate.js"></script>
-  <script src="js/app/directives/ui-butterbar.js"></script>
-  <script src="js/app/directives/ui-focus.js"></script>
-  <script src="js/app/directives/ui-fullscreen.js"></script>
-  <script src="js/app/directives/ui-jq.js"></script>
-  <script src="js/app/directives/ui-module.js"></script>
-  <script src="js/app/directives/ui-nav.js"></script>
-  <script src="js/app/directives/ui-scroll.js"></script>
-  <script src="js/app/directives/ui-shift.js"></script>
-  <script src="js/app/directives/ui-toggleclass.js"></script>
-  <!-- Lazy loading -->
-</body>
+		<script type="text/javascript" src="js/app/main.js" ></script>
+		<script type="text/javascript" src="js/app/router.js" ></script>
+		
+	</body>
 </html>

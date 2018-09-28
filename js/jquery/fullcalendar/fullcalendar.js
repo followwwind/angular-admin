@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v2.2.6
+ * FullCalendar v2.2.5
  * Docs & License: http://arshaw.com/fullcalendar/
  * (c) 2013 Adam Shaw
  */
@@ -13,9 +13,7 @@
 	}
 })(function($, moment) {
 
-;;
-
-var defaults = {
+    var defaults = {
 
 	titleRangeSeparator: ' \u2014 ', // emphasized dash
 	monthYearFormat: 'MMMM YYYY', // required for en. other languages rely on datepicker computable option
@@ -126,9 +124,7 @@ var rtlDefaults = {
 	}
 };
 
-;;
-
-var fc = $.fullCalendar = { version: "2.2.6" };
+    var fc = $.fullCalendar = { version: "2.2.5" };
 var fcViews = fc.views = {};
 
 
@@ -206,9 +202,7 @@ function isForcedAtomicOption(name) {
 // FIX: find a different solution for view-option-hashes and have a whitelist
 // for options that can be recursively merged.
 
-;;
-
-var langOptionHash = fc.langs = {}; // initialize and expose
+    var langOptionHash = fc.langs = {}; // initialize and expose
 
 
 // TODO: document the structure and ordering of a FullCalendar lang file
@@ -356,8 +350,6 @@ function getMomentLocaleData(langCode) {
 // Initialize English by forcing computation of moment-derived options.
 // Also, sets it as the default.
 fc.lang('en', englishDefaults);
-
-;;
 
 // exports
 fc.intersectionToSeg = intersectionToSeg;
@@ -839,9 +831,7 @@ function debounce(func, wait) {
 	};
 }
 
-;;
-
-var ambigDateOfMonthRegex = /^\s*\d{4}-\d\d$/;
+    var ambigDateOfMonthRegex = /^\s*\d{4}-\d\d$/;
 var ambigTimeOrZoneRegex =
 	/^\s*\d{4}-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?)?$/;
 var newMomentProto = moment.fn; // where we will attach our new methods
@@ -1030,7 +1020,7 @@ newMomentProto.stripTime = function() {
 		this.utc(); // set the internal UTC flag (will clear the ambig flags)
 		setUTCValues(this, a.slice(0, 3)); // set the year/month/date. time will be zero
 
-		// Mark the time as ambiguous. This needs to happen after the .utc() call, which calls .utcOffset(),
+		// Mark the time as ambiguous. This needs to happen after the .utc() call, which calls .zone(),
 		// which clears all ambig flags. Same with setUTCValues with moment-timezone.
 		this._ambigTime = true;
 		this._ambigZone = true; // if ambiguous time, also ambiguous timezone offset
@@ -1064,11 +1054,11 @@ newMomentProto.stripZone = function() {
 		setUTCValues(this, a); // will set the year/month/date/hours/minutes/seconds/ms
 
 		if (wasAmbigTime) {
-			// the above call to .utc()/.utcOffset() unfortunately clears the ambig flags, so reassign
+			// the above call to .utc()/.zone() unfortunately clears the ambig flags, so reassign
 			this._ambigTime = true;
 		}
 
-		// Mark the zone as ambiguous. This needs to happen after the .utc() call, which calls .utcOffset(),
+		// Mark the zone as ambiguous. This needs to happen after the .utc() call, which calls .zone(),
 		// which clears all ambig flags. Same with setUTCValues with moment-timezone.
 		this._ambigZone = true;
 	}
@@ -1081,23 +1071,18 @@ newMomentProto.hasZone = function() {
 	return !this._ambigZone;
 };
 
-$.each([ 'utcOffset', 'zone' ], function(i, name) { // .zone() is moment-pre-2.9, has been deprecated
-	if (oldMomentProto[name]) {
+// this method implicitly marks a zone (will get called upon .utc() and .local())
+newMomentProto.zone = function(tzo) {
 
-		// this method implicitly marks a zone (will get called upon .utc() and .local())
-		newMomentProto[name] = function(tzo) {
-
-			if (tzo != null) { // setter
-				// these assignments needs to happen before the original zone method is called.
-				// I forget why, something to do with a browser crash.
-				this._ambigTime = false;
-				this._ambigZone = false;
-			}
-
-			return oldMomentProto[name].apply(this, arguments);
-		};
+	if (tzo != null) { // setter
+		// these assignments needs to happen before the original zone method is called.
+		// I forget why, something to do with a browser crash.
+		this._ambigTime = false;
+		this._ambigZone = false;
 	}
-});
+
+	return oldMomentProto.zone.apply(this, arguments);
+};
 
 // this method implicitly marks a zone
 newMomentProto.local = function() {
@@ -1290,8 +1275,6 @@ setLocalValues = allowValueOptimization ? function(mom, a) {
 	));
 	moment.updateOffset(mom, false); // keepTime=false
 } : setMomentValues;
-
-;;
 
 // Single Date Formatting
 // -------------------------------------------------------------------------------------------------
@@ -1521,9 +1504,7 @@ function chunkFormatString(formatStr) {
 	return chunks;
 }
 
-;;
-
-fc.Class = Class; // export
+    fc.Class = Class; // export
 
 // class that all other classes will inherit from
 function Class() { }
@@ -1562,9 +1543,7 @@ Class.extend = function(members) {
 Class.mixin = function(members) {
 	copyOwnProps(members.prototype || members, this.prototype);
 };
-;;
-
-/* A rectangular panel that is absolutely positioned over other content
+    /* A rectangular panel that is absolutely positioned over other content
 ------------------------------------------------------------------------------------------------------------------------
 Options:
 	- className (string)
@@ -1731,9 +1710,7 @@ var Popover = Class.extend({
 
 });
 
-;;
-
-/* A "coordinate map" converts pixel coordinates into an associated cell, which has an associated date
+    /* A "coordinate map" converts pixel coordinates into an associated cell, which has an associated date
 ------------------------------------------------------------------------------------------------------------------------
 Common interface:
 
@@ -1893,9 +1870,7 @@ var ComboCoordMap = Class.extend({
 
 });
 
-;;
-
-/* Tracks mouse movements over a CoordMap and raises events about which cell the mouse is over.
+    /* Tracks mouse movements over a CoordMap and raises events about which cell the mouse is over.
 ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: very useful to have a handler that gets called upon cellOut OR when dragging stops (for cleanup)
 
@@ -2318,9 +2293,7 @@ function isCellsEqual(cell1, cell2) {
 	return false;
 }
 
-;;
-
-/* Creates a clone of an element and lets it track the mouse as it moves
+    /* Creates a clone of an element and lets it track the mouse as it moves
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var MouseFollower = Class.extend({
@@ -2505,9 +2478,7 @@ var MouseFollower = Class.extend({
 
 });
 
-;;
-
-/* A utility class for rendering <tr> rows.
+    /* A utility class for rendering <tr> rows.
 ----------------------------------------------------------------------------------------------------------------------*/
 // It leverages methods of the subclass and the View to determine custom rendering behavior for each row "type"
 // (such as highlight rows, day rows, helper rows, etc).
@@ -2609,9 +2580,7 @@ var RowRenderer = Class.extend({
 
 });
 
-;;
-
-/* An abstract class comprised of a "grid" of cells that each represent a specific datetime
+    /* An abstract class comprised of a "grid" of cells that each represent a specific datetime
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var Grid = fc.Grid = RowRenderer.extend({
@@ -3189,9 +3158,7 @@ var Grid = fc.Grid = RowRenderer.extend({
 
 });
 
-;;
-
-/* Event-rendering and event-interaction methods for the abstract Grid class
+    /* Event-rendering and event-interaction methods for the abstract Grid class
 ----------------------------------------------------------------------------------------------------------------------*/
 
 Grid.mixin({
@@ -4090,9 +4057,7 @@ function getDraggedElMeta(el) {
 }
 
 
-;;
-
-/* A component that renders a grid of whole-days that runs horizontally. There can be multiple rows, one per week.
+    /* A component that renders a grid of whole-days that runs horizontally. There can be multiple rows, one per week.
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var DayGrid = Grid.extend({
@@ -4559,9 +4524,7 @@ var DayGrid = Grid.extend({
 
 });
 
-;;
-
-/* Event-rendering methods for the DayGrid class
+    /* Event-rendering methods for the DayGrid class
 ----------------------------------------------------------------------------------------------------------------------*/
 
 DayGrid.mixin({
@@ -4864,9 +4827,7 @@ function compareDaySegCols(a, b) {
 	return a.leftCol - b.leftCol;
 }
 
-;;
-
-/* Methods relate to limiting the number events for a given day on a DayGrid
+    /* Methods relate to limiting the number events for a given day on a DayGrid
 ----------------------------------------------------------------------------------------------------------------------*/
 // NOTE: all the segs being passed around in here are foreground segs
 
@@ -5219,9 +5180,7 @@ DayGrid.mixin({
 
 });
 
-;;
-
-/* A component that renders one or more columns of vertical time slots
+    /* A component that renders one or more columns of vertical time slots
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var TimeGrid = Grid.extend({
@@ -5729,9 +5688,7 @@ var TimeGrid = Grid.extend({
 
 });
 
-;;
-
-/* Event-rendering methods for the TimeGrid class
+    /* Event-rendering methods for the TimeGrid class
 ----------------------------------------------------------------------------------------------------------------------*/
 
 TimeGrid.mixin({
@@ -6137,16 +6094,13 @@ function compareForwardSlotSegs(seg1, seg2) {
 		compareSegs(seg1, seg2);
 }
 
-;;
-
-/* An abstract class from which other views inherit from
+    /* An abstract class from which other views inherit from
 ----------------------------------------------------------------------------------------------------------------------*/
 
 var View = fc.View = Class.extend({
 
 	type: null, // subclass' view name (string)
 	name: null, // deprecated. use `type` instead
-	title: null, // the text that will be displayed in the header's title
 
 	calendar: null, // owner Calendar object
 	options: null, // view-specific options
@@ -6295,7 +6249,7 @@ var View = fc.View = Class.extend({
 
 	// Computes the new date when the user hits the prev button, given the current date
 	computePrevDate: function(date) {
-		return this.massageCurrentDate(
+		return this.skipHiddenDays(
 			date.clone().startOf(this.intervalUnit).subtract(this.intervalDuration), -1
 		);
 	},
@@ -6303,35 +6257,14 @@ var View = fc.View = Class.extend({
 
 	// Computes the new date when the user hits the next button, given the current date
 	computeNextDate: function(date) {
-		return this.massageCurrentDate(
+		return this.skipHiddenDays(
 			date.clone().startOf(this.intervalUnit).add(this.intervalDuration)
 		);
 	},
 
 
-	// Given an arbitrarily calculated current date of the calendar, returns a date that is ensured to be completely
-	// visible. `direction` is optional and indicates which direction the current date was being
-	// incremented or decremented (1 or -1).
-	massageCurrentDate: function(date, direction) {
-		if (this.intervalDuration <= moment.duration({ days: 1 })) { // if the view displays a single day or smaller
-			if (this.isHiddenDay(date)) {
-				date = this.skipHiddenDays(date, direction);
-				date.startOf('day');
-			}
-		}
-
-		return date;
-	},
-
-
 	/* Title and Date Formatting
 	------------------------------------------------------------------------------------------------------------------*/
-
-
-	// Sets the view's title property to the most updated computed value
-	updateTitle: function() {
-		this.title = this.computeTitle();
-	},
 
 
 	// Computes what the title at the top of the calendar should be for this view
@@ -6889,10 +6822,7 @@ var View = fc.View = Class.extend({
 
 });
 
-;;
-
- 
-function Calendar(element, instanceOptions) {
+    function Calendar(element, instanceOptions) {
 	var t = this;
 
 
@@ -6934,7 +6864,7 @@ function Calendar(element, instanceOptions) {
 	t.reportEvents = reportEvents;
 	t.reportEventChange = reportEventChange;
 	t.rerenderEvents = renderEvents; // `renderEvents` serves as a rerender. an API method
-	t.changeView = renderView; // `renderView` will switch to another view
+	t.changeView = changeView;
 	t.select = select;
 	t.unselect = unselect;
 	t.prev = prev;
@@ -7183,7 +7113,7 @@ function Calendar(element, instanceOptions) {
 			element.prepend(headerElement);
 		}
 
-		renderView(options.defaultView);
+		changeView(options.defaultView);
 
 		if (options.handleWindowResize) {
 			windowResizeProxy = debounce(windowResize, options.windowResizeDelay); // prevents rapid calls
@@ -7216,8 +7146,13 @@ function Calendar(element, instanceOptions) {
 	// -----------------------------------------------------------------------------------
 
 
+	function changeView(viewType) {
+		renderView(0, viewType);
+	}
+
+
 	// Renders a view because of a date change, view-type change, or for the first time
-	function renderView(viewType) {
+	function renderView(delta, viewType) {
 		ignoreWindowResize++;
 
 		// if viewType is changing, destroy the old view
@@ -7240,12 +7175,18 @@ function Calendar(element, instanceOptions) {
 
 		if (currentView) {
 
-			// in case the view should render a period of time that is completely hidden
-			date = currentView.massageCurrentDate(date);
+			// let the view determine what the delta means
+			if (delta < 0) {
+				date = currentView.computePrevDate(date);
+			}
+			else if (delta > 0) {
+				date = currentView.computeNextDate(date);
+			}
 
 			// render or rerender the view
 			if (
 				!currentView.start || // never rendered before
+				delta || // explicit date window change
 				!date.isWithin(currentView.intervalStart, currentView.intervalEnd) // implicit date window change
 			) {
 				if (elementVisible()) {
@@ -7504,8 +7445,7 @@ function Calendar(element, instanceOptions) {
 
 
 	function updateTitle() {
-		currentView.updateTitle();
-		header.updateTitle(currentView.title);
+		header.updateTitle(currentView.computeTitle());
 	}
 
 
@@ -7555,14 +7495,12 @@ function Calendar(element, instanceOptions) {
 	
 	
 	function prev() {
-		date = currentView.computePrevDate(date);
-		renderView();
+		renderView(-1);
 	}
 	
 	
 	function next() {
-		date = currentView.computeNextDate(date);
-		renderView();
+		renderView(1);
 	}
 	
 	
@@ -7618,7 +7556,7 @@ function Calendar(element, instanceOptions) {
 		}
 
 		date = newDate;
-		renderView(viewType);
+		changeView(viewType);
 	}
 	
 	
@@ -7687,9 +7625,7 @@ function Calendar(element, instanceOptions) {
 
 }
 
-;;
-
-/* Top toolbar area with buttons and title
+    /* Top toolbar area with buttons and title
 ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: rename all header-related things to "toolbar"
 
@@ -7915,9 +7851,7 @@ function Header(calendar, options) {
 
 }
 
-;;
-
-fc.sourceNormalizers = [];
+    fc.sourceNormalizers = [];
 fc.sourceFetchers = [];
 
 var ajaxDefaults = {
@@ -9002,9 +8936,7 @@ function backupEventDates(event) {
 	event._end = event.end ? event.end.clone() : null;
 }
 
-;;
-
-/* An abstract class for the "basic" views, as well as month view. Renders one or more rows of day cells.
+    /* An abstract class for the "basic" views, as well as month view. Renders one or more rows of day cells.
 ----------------------------------------------------------------------------------------------------------------------*/
 // It is a manager for a DayGrid subcomponent, which does most of the heavy lifting.
 // It is responsible for managing width/height.
@@ -9315,9 +9247,7 @@ var BasicView = fcViews.basic = View.extend({
 
 });
 
-;;
-
-/* A month view with day cells running in rows (one-per-week) and columns
+    /* A month view with day cells running in rows (one-per-week) and columns
 ----------------------------------------------------------------------------------------------------------------------*/
 
 setDefaults({
@@ -9329,12 +9259,13 @@ var MonthView = fcViews.month = BasicView.extend({
 	// Produces information about what range to display
 	computeRange: function(date) {
 		var range = BasicView.prototype.computeRange.call(this, date); // get value from super-method
-		var rowCnt;
 
-		// ensure 6 weeks
 		if (this.isFixedWeeks()) {
-			rowCnt = Math.ceil(range.end.diff(range.start, 'weeks', true)); // could be partial weeks due to hiddenDays
-			range.end.add(6 - rowCnt, 'weeks');
+			// ensure 6 weeks
+			range.end.add(
+				6 - range.end.diff(range.start, 'weeks'),
+				'weeks'
+			);
 		}
 
 		return range;
@@ -9368,27 +9299,21 @@ var MonthView = fcViews.month = BasicView.extend({
 
 MonthView.duration = { months: 1 };
 
-;;
-
-/* A week view with simple day cells running horizontally
+    /* A week view with simple day cells running horizontally
 ----------------------------------------------------------------------------------------------------------------------*/
 
 fcViews.basicWeek = {
 	type: 'basic',
 	duration: { weeks: 1 }
 };
-;;
-
-/* A view with a single simple day cell
+    /* A view with a single simple day cell
 ----------------------------------------------------------------------------------------------------------------------*/
 
 fcViews.basicDay = {
 	type: 'basic',
 	duration: { days: 1 }
 };
-;;
-
-/* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
+    /* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
 ----------------------------------------------------------------------------------------------------------------------*/
 // Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
 // Responsible for managing width/height.
@@ -9790,24 +9715,18 @@ fcViews.agenda = View.extend({ // AgendaView
 
 });
 
-;;
-
-/* A week view with an all-day cell area at the top, and a time grid below
+    /* A week view with an all-day cell area at the top, and a time grid below
 ----------------------------------------------------------------------------------------------------------------------*/
 
 fcViews.agendaWeek = {
 	type: 'agenda',
 	duration: { weeks: 1 }
 };
-;;
-
-/* A day view with an all-day cell area at the top, and a time grid below
+    /* A day view with an all-day cell area at the top, and a time grid below
 ----------------------------------------------------------------------------------------------------------------------*/
 
 fcViews.agendaDay = {
 	type: 'agenda',
 	duration: { days: 1 }
 };
-;;
-
 });
