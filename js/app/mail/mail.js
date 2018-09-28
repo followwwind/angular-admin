@@ -1,4 +1,4 @@
-app.controller('MailCtrl', ['$scope', function($scope) {
+app.controller('MailCtrl', ['$scope', '$state', function($scope, $state) {
   $scope.folds = [
     {name: 'Inbox', filter:''},
     {name: 'Starred', filter:'starred'},
@@ -19,7 +19,7 @@ app.controller('MailCtrl', ['$scope', function($scope) {
     $scope.labels.push(
       {
         name: $scope.newLabel.name,
-        filter: angular.lowercase($scope.newLabel.name),
+        filter: angular.$$lowercase($scope.newLabel.name),
         color: '#ccc'
       }
     );
@@ -28,12 +28,15 @@ app.controller('MailCtrl', ['$scope', function($scope) {
 
   $scope.labelClass = function(label) {
     return {
-      'b-l-info': angular.lowercase(label) === 'angular',
-      'b-l-primary': angular.lowercase(label) === 'bootstrap',
-      'b-l-warning': angular.lowercase(label) === 'client',
-      'b-l-success': angular.lowercase(label) === 'work'      
+      'b-l-info': angular.$$lowercase(label) === 'angular',
+      'b-l-primary': angular.$$lowercase(label) === 'bootstrap',
+      'b-l-warning': angular.$$lowercase(label) === 'client',
+      'b-l-success': angular.$$lowercase(label) === 'work'      
     };
   };
+
+
+
 
 }]);
 
