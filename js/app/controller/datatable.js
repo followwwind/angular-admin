@@ -25,6 +25,7 @@ app.controller('DataTableController', function($scope, $http, $timeout, time, ob
 
 
     var tbl;
+    var layer = layui.layer
 
     $timeout(function(){
         tbl = $('#tbl').DataTable({
@@ -126,12 +127,14 @@ app.controller('DataTableController', function($scope, $http, $timeout, time, ob
         $scope.form.flag = 2;
         $scope.form.title = '修改';
         obj.copy(entity, $scope.form.entity);
+        $scope.$apply();
         $("#add").modal("show");
     });
 
     $('#tbl tbody').on('click', 'span[name="del"]', function(e){
         var entity = tbl.row($(e.target).parents("tr")).data();
         console.log(entity);
+        layer.msg('hello world', {icon: 1});
         // $http.delete($scope.serverUrl + "user/delete/" + entity.id, {}).then(function(response){
         //     tbl.ajax.reload();
         // }, 
