@@ -9,6 +9,7 @@ angular.module('app', [
     'ngTouch',
     'ngStorage',
     'ui.router',
+    'ui.bootstrap',
     'ui.load',
     'ui.jq',
     'oc.lazyLoad',

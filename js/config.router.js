@@ -65,7 +65,7 @@ angular.module('app')
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/controller/signIn.js'] );
+                          return uiLoad.load( ['js/app/controller/signin.js'] );
                       }]
                   }
               })
@@ -75,7 +75,7 @@ angular.module('app')
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/controller/signUp.js'] );
+                          return uiLoad.load( ['js/app/controller/signup.js'] );
                       }]
                   }
               })
