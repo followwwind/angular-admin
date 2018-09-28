@@ -97,12 +97,10 @@ angular.module('app')
                 resolve: {
                     deps: ['uiLoad',
                       function( uiLoad ){
-                        return uiLoad.load( [
-                            'js/jquery/datatables/js/jquery.dataTables.min.js',
-                            'js/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js',
-                            'js/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                        var arr = JQ_CONFIG.dataTable.concat([
                             'js/app/controller/datatable.js'
-                        ] );
+                        ]);
+                        return uiLoad.load(arr);
                     }]
                 }
               })

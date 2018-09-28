@@ -1,20 +1,15 @@
 'use strict';
 
 /**
- * 0.1.1
- * Deferred load js/css file, used for ui-jq.js and Lazy Loading.
+ * 1.0.0
+ * Deferred load js/css file, used for angular-ui-jq.js and Lazy Loading.
  * 
- * @ flatfull.com All Rights Reserved.
- * Author url: http://themeforest.net/user/flatfull
  */
-
-angular.module('ui.load', [])
-	.service('uiLoad', ['$document', '$q', '$timeout', function ($document, $q, $timeout) {
-
+angular.module('ui.load', []).service('uiLoad', ['$document', '$q', '$timeout', 
+	function ($document, $q, $timeout) {
 		var loaded = [];
 		var promise = false;
 		var deferred = $q.defer();
-
 		/**
 		 * Chain loads the given sources
 		 * @param srcs array, script or css
@@ -23,16 +18,16 @@ angular.module('ui.load', [])
 		this.load = function (srcs) {
 			srcs = angular.isArray(srcs) ? srcs : srcs.split(/\s+/);
 			var self = this;
-			if(!promise){
+			if (!promise) {
 				promise = deferred.promise;
 			}
-      angular.forEach(srcs, function(src) {
-      	promise = promise.then( function(){
-      		return src.indexOf('.css') >=0 ? self.loadCSS(src) : self.loadScript(src);
-      	} );
-      });
-      deferred.resolve();
-      return promise;
+      		angular.forEach(srcs, function(src) {
+      			promise = promise.then(function() {
+      				return src.indexOf('.css') >=0 ? self.loadCSS(src) : self.loadScript(src);
+      			});
+      		});
+      		deferred.resolve();
+      		return promise;
 		}
 
 		/**
@@ -41,7 +36,7 @@ angular.module('ui.load', [])
 		 * @returns {*} Promise that will be resolved once the script has been loaded.
 		 */
 		this.loadScript = function (src) {
-			if(loaded[src]) return loaded[src].promise;
+			if (loaded[src]) return loaded[src].promise;
 
 			var deferred = $q.defer();
 			var script = $document[0].createElement('script');
@@ -68,7 +63,7 @@ angular.module('ui.load', [])
 		 * @returns {*} Promise that will be resolved once the CSS file has been loaded.
 		 */
 		this.loadCSS = function (href) {
-			if(loaded[href]) return loaded[href].promise;
+			if (loaded[href]) return loaded[href].promise;
 
 			var deferred = $q.defer();
 			var style = $document[0].createElement('link');
@@ -90,4 +85,5 @@ angular.module('ui.load', [])
 
 			return deferred.promise;
 		};
-}]);
+	}
+]);
